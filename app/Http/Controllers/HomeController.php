@@ -1,12 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Location;
 use App\Operation;
 use Carbon\Carbon;
-
 class HomeController extends Controller
 {
     /**
@@ -18,7 +15,6 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
     /**
      * Show the application dashboard.
      *
@@ -27,10 +23,8 @@ class HomeController extends Controller
     public function index()
     {
         $locationRelances = Location::where('status', 'pending')->get();
-
         return view('home', compact('locationRelances'));
     }
-
     public function getEvents()
     {
         $locations = Location::with('vehicule',  'client')->get();
@@ -44,13 +38,10 @@ class HomeController extends Controller
                 'className' => 'bg-primary'
             ];
         });
-
         return $locationEvents;
     }
-
     public function getOperations()
     {
-
         $operations = Operation::with(['vehicule', 'typeOperation', 'fournisseur'])->get();
         $operationEvents = $operations->map(function($item){
             return [
@@ -60,7 +51,6 @@ class HomeController extends Controller
                 'className' => 'bg-purple'
             ];
         });
-
         return $operationEvents;
     }
 }

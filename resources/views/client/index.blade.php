@@ -56,7 +56,7 @@
                                 <td><a href="">{{ $client->name }}</a></td>
                                 <td>
                                     <a href="#custom-modal-{{ $client->id }}" class="table-action-btn" data-animation="fadein" data-plugin="custommodal"
-                                       data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-edit"></i></a>
+                                       data-overlaySpeed="200" data-overlayColor="#36404a"><button  class="btn btn-info" style="margin-left :-25px">Edit</button></a>
 
                                     <div id="custom-modal-{{ $client->id }}" class="modal-demo">
                                         <button type="button" class="close" onclick="Custombox.close();">
@@ -70,7 +70,15 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <a href="#" class="table-action-btn"><i class="md md-close"></i></a>
+                                    <!--<a href="#" class="table-action-btn"><i class="md md-close"></i></a>-->
+                                    <a href="#" class="table-action-btn">
+                                    <form method="post" action="/clientdestroy" enctype="multipart/form-data">
+                                        {{ method_field('delete') }}
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="del_id" value="{{$client->id}}"><br><br>
+                                        <input type="submit" value="delete" class="btn btn-danger">
+                                    </form>
+                                </a>
                                 </td>
                             </tr>
                         @endforeach

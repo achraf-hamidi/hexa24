@@ -62,7 +62,10 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('/client', 'ClientController@index');
 	Route::post('/client', 'ClientController@store');
+	Route::delete('/clientdestroy', 'ClientController@destroy');
+
 	Route::patch('/edit/{id}/client', 'ClientController@update');
+
 
 	Route::get('/location', 'LocationController@index');
 	Route::get('/location/{id}', 'LocationController@show');
@@ -73,3 +76,7 @@ Route::group(['middleware' => 'auth'], function() {
 });
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

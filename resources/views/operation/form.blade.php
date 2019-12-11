@@ -1,4 +1,4 @@
-{{ csrf_field() }}
+<!--{{ csrf_field() }}
 <div class="modal-body">
     <div class="row">
         <div class="col-md-4">
@@ -58,4 +58,4 @@
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal" onclick="Custombox.close();">Annuler</button>
     <button type="submit" class="btn btn-primary">{{ $btnSubmit }}</button>
-</div>
+</div> -->

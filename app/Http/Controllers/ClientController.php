@@ -31,4 +31,12 @@ class ClientController extends Controller
         Flashy::success('Client modifié avec succès');
         return back();
     }
+    public function destroy(Request $request)
+    {
+     
+        $clients = Client::find($request->del_id);
+        $clients ->delete() ; 
+        Flashy::success('Client suppermie avec succès');
+        return back();
+    }
 } 

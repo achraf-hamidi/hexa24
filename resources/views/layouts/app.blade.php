@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Location voiture </title>
     
     @yield('styles')
     <link href="/assets/plugins/custombox/dist/custombox.min.css" rel="stylesheet">
@@ -68,10 +68,7 @@
 
         </div> <!-- content -->
 
-        <footer class="footer">
-            {{ date('Y') }} © La Marquise Location.
-        </footer>
-
+      
     </div>
     <!-- ============================================================== -->
     <!-- End Right content here -->
