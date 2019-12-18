@@ -44,4 +44,26 @@ class LocationController extends Controller
 
         return view('location.show', compact('location'));
     }
+    public function update( $id,LocationForm $form)
+    {  
+     
+        $form->persist($id);
+
+        Flashy::success('Location modifié avec succès');
+
+        return redirect()->back();
+    }
+
+    public function destroy($id)
+    {
+       
+        $Location = Location::findOrFail($id);
+
+        $Location->delete();
+
+        Flashy::success('Location supprimé avec succès');
+
+        return redirect()->back();
+    }
+
 }

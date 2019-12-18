@@ -3,7 +3,7 @@
 @section('page-title')
     <div class="row">
         <div class="col-sm-12">
-            <h4 class="page-title">Marque</h4>
+            <h4 class="page-title">modele</h4>
             <ol class="breadcrumb">
                 <li>
                     <a href="#">Gestion des vehicules</a>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
 
-                <h4 class="text-dark header-title m-t-0">Liste des marques de véhicules</h4>
+                <h4 class="text-dark header-title m-t-0">Liste des modeles de véhicules</h4>
                 <hr>
 
                 <div class="table-responsive">
@@ -57,8 +57,47 @@
                                     {{ $modele->name }}
                                 </td>
                                 <td>
-                                    <a href="#" class="table-action-btn"><i class="md md-edit"></i></a>
-                                    <a href="#" class="table-action-btn"><i class="md md-close"></i></a>
+                                    <a href="#custom-edit-modal-{{ $modele->id }}" class="table-action-btn" data-animation="fadein"
+                                        data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">
+                                         <i class="md md-edit"></i>
+                                     </a>
+                                     <div id="custom-edit-modal-{{ $modele->id }}" class="modal-demo">
+                                         <button type="button" class="close" onclick="Custombox.close();">
+                                             <span>&times;</span><span class="sr-only">Fermer</span>
+                                         </button>
+                                         <h4 class="custom-modal-title">Enregistrer un véhicule</h4>
+                                         <div class="custom-modal-text text-left">
+                                             <form method="POST" action="/edit/{{ $modele->id }}/modele">
+                                                 {{ method_field('PATCH') }}
+                                                 @include('modele.form', ['btnSubmit' => 'Modifier', 'modele' => $modele])
+                                             </form>
+                                         </div>
+                                     </div>
+                                    <!--<a href="#" class="table-action-btn"><i class="md md-close"></i></a>-->
+                                    <a href="#custom-delete-modal-{{ $modele->id }}" class="table-action-btn" data-animation="fadein"
+                                        data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">
+                                         <i class="md md-close"></i>
+                                     </a>
+                                     <div id="custom-delete-modal-{{ $modele->id }}" class="modal-demo">
+                                         <button type="button" class="close" onclick="Custombox.close();">
+                                             <span>&times;</span><span class="sr-only">Fermer</span>
+                                         </button>
+                                         <h4 class="custom-modal-title">Supprimer un modele</h4>
+                                         <div class="custom-modal-text text-left">
+                                             <div class="modal-body">
+                                                 Voulez-vous supprimer la modele {{ $modele->name }} ?
+                                             </div>
+                                             <div class="modal-footer">
+                                                 <form action="/modele/{{ $modele->id }}/delete" method="POST">
+                                                     {{ csrf_field() }}
+                                                     {{ method_field('DELETE') }}
+                                                     <button type="button" class="btn btn-default" data-dismiss="modal" onclick="Custombox.close();">Annuler</button>
+                                                     <button type="submit" class="btn btn-primary">Supprimer</button>
+                                                 </form>
+                                             </div>
+                                         </div>
+                                     </div>
+                               
                                 </td>
                             </tr>
                         @endforeach

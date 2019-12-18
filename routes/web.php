@@ -31,12 +31,19 @@ Route::post('/login', 'SessionController@store');
 Route::group(['middleware' => 'auth'], function() {
 	Route::get('/marque', 'MarqueController@index');
 	Route::post('/marque', 'MarqueController@store');
+	Route::delete('/marque/{id}/delete', 'MarqueController@destroy');
+	Route::patch('/edit/{id}/marque', 'MarqueController@update');
 
 	Route::get('/modele', 'ModeleController@index');
 	Route::post('/modele', 'ModeleController@store');
+	Route::delete('/modele/{id}/delete', 'ModeleController@destroy');
+	Route::patch('/edit/{id}/modele', 'ModeleController@update');
+
 
 	Route::get('/category', 'CategoryController@index');
 	Route::post('/category', 'CategoryController@store');
+	Route::delete('/category/{id}/delete', 'CategoryController@destroy');
+	Route::patch('/edit/{id}/Category', 'CategoryController@update');
 
 	Route::get('/vehicule', 'VehiculeController@index');
 	Route::post('/vehicule', 'VehiculeController@store');
@@ -71,6 +78,8 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('/location/{id}', 'LocationController@show');
 	Route::get('/location/statut/{id}', 'LocationController@statut');
 	Route::post('/location', 'LocationController@store');
+	Route::delete('/location/{id}/delete', 'LocationController@destroy');
+	Route::patch('/edit/{id}/location', 'LocationController@update');
 
 	Route::get('/invoice', 'InvoiceController@index');
 });

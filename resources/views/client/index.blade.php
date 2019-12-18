@@ -56,7 +56,9 @@
                                 <td><a href="">{{ $client->name }}</a></td>
                                 <td>
                                     <a href="#custom-modal-{{ $client->id }}" class="table-action-btn" data-animation="fadein" data-plugin="custommodal"
-                                       data-overlaySpeed="200" data-overlayColor="#36404a"><button  class="btn btn-info" style="margin-left :-25px">Edit</button></a>
+                                       data-overlaySpeed="200" data-overlayColor="#36404a">
+                                       <button  class="btn btn-info" style="margin-left :-25px">Edit</button>
+                                    </a>
 
                                     <div id="custom-modal-{{ $client->id }}" class="modal-demo">
                                         <button type="button" class="close" onclick="Custombox.close();">

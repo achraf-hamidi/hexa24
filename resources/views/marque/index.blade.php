@@ -10,7 +10,7 @@
                 </li>
                 <li class="active">
                     Marque
-                </li>
+                </li> 
             </ol>
         </div>
     </div>
@@ -57,8 +57,46 @@
                                     {{ $marque->name }}
                                 </td>
                                 <td>
-                                    <a href="#" class="table-action-btn"><i class="md md-edit"></i></a>
-                                    <a href="#" class="table-action-btn"><i class="md md-close"></i></a>
+                                    <a href="#custom-edit-modal-{{ $marque->id }}" class="table-action-btn" data-animation="fadein"
+                                        data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">
+                                         <i class="md md-edit"></i>
+                                     </a>
+                                     <div id="custom-edit-modal-{{ $marque->id }}" class="modal-demo">
+                                         <button type="button" class="close" onclick="Custombox.close();">
+                                             <span>&times;</span><span class="sr-only">Fermer</span>
+                                         </button>
+                                         <h4 class="custom-modal-title">Enregistrer un véhicule</h4>
+                                         <div class="custom-modal-text text-left">
+                                             <form method="POST" action="/edit/{{ $marque->id }}/marque">
+                                                 {{ method_field('PATCH') }}
+                                                 @include('marque.form', ['btnSubmit' => 'Modifier', 'marque' => $marque])
+                                             </form>
+                                         </div>
+                                     </div>
+                                    <!--<a href="#" class="table-action-btn"><i class="md md-close"></i></a>-->
+                                    <a href="#custom-delete-modal-{{ $marque->id }}" class="table-action-btn" data-animation="fadein"
+                                        data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">
+                                         <i class="md md-close"></i>
+                                     </a>
+                                     <div id="custom-delete-modal-{{ $marque->id }}" class="modal-demo">
+                                         <button type="button" class="close" onclick="Custombox.close();">
+                                             <span>&times;</span><span class="sr-only">Fermer</span>
+                                         </button>
+                                         <h4 class="custom-modal-title">Supprimer un marque</h4>
+                                         <div class="custom-modal-text text-left">
+                                             <div class="modal-body">
+                                                 Voulez-vous supprimer la marque {{ $marque->name }} ?
+                                             </div>
+                                             <div class="modal-footer">
+                                                 <form action="/marque/{{ $marque->id }}/delete" method="POST">
+                                                     {{ csrf_field() }}
+                                                     {{ method_field('DELETE') }}
+                                                     <button type="button" class="btn btn-default" data-dismiss="modal" onclick="Custombox.close();">Annuler</button>
+                                                     <button type="submit" class="btn btn-primary">Supprimer</button>
+                                                 </form>
+                                             </div>
+                                         </div>
+                                     </div>
                                 </td>
                             </tr>
                         @endforeach

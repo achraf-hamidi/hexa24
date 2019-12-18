@@ -43,18 +43,22 @@ class LocationForm extends FormRequest
         ];
     }
 
-    public function persist()
+    public function persist($id = null)
     {
-        $location = new Location;
-        $location->client_id = $this->client_id;
-        $location->vehicule_id = $this->vehicule_id;
-        $location->date_start = $this->date_start;
-        $location->date_end = $this->date_end;
-        $location->token = str_random(8);        
+        if(!is_null($id))
+            $location = Location::findOrFail($id);
+        else
+            $location = new Location;
+            $location->client_id = $this->client_id;
+            $location->vehicule_id = $this->vehicule_id;
+            $location->date_start = $this->date_start;
+            $location->date_end = $this->date_end;
+            $location->token = str_random(8);        
+    
+            $location->save();
 
-        $location->save();
-
-        $user = Auth::user();
-        $user->locations()->attach($location);
+      
+            $user = Auth::user();
+            $user->locations()->attach($location);
     }
 }

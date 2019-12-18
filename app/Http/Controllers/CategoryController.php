@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use MercurySeries\Flashy\Flashy;
 
 class CategoryController extends Controller
 {
@@ -20,6 +21,26 @@ class CategoryController extends Controller
         ]);
 
         Category::create(request(['name']));
+
+        return redirect()->back();
+    }
+   
+    public function destroy($id)
+    {
+        $categories = Category::findOrFail($id);
+
+        $categories->delete();
+
+        Flashy::success('categories supprimé avec succès');
+
+        return redirect()->back();
+    }
+    public function update( $id,Request $form)
+    {
+        return $id ;
+        $form->persist($id);
+
+        Flashy::success('cat modifié avec succès');
 
         return redirect()->back();
     }

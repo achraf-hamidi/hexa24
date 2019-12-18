@@ -58,9 +58,9 @@
 							@foreach($vehicules as $vehicule)
 								<tr>
 									<td>{{ $vehicule->id }}</td>
-									<td>{{ $vehicule->modele->name }}</td>
+									<td>{{ $vehicule->modele_id }}</td>   
 									<td>{{ $vehicule->immatriculation }}</td>
-									<td>{{ $vehicule->category->name }}</td>
+									<td>{{ $vehicule->category_id }}</td>
 									<td>
 										<a href="#custom-edit-modal-{{ $vehicule->id }}" class="table-action-btn" data-animation="fadein"
 										   data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a">

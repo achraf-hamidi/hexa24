@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Marque;
 use App\Modele;
 use Illuminate\Http\Request;
+use MercurySeries\Flashy\Flashy;
+use App\Http\Requests\ModeleRequest;
 
 class ModeleController extends Controller
 {
@@ -25,6 +27,24 @@ class ModeleController extends Controller
         ]);
 
         Modele::create(request(['name', 'marque_id']));
+
+        return redirect()->back(); 
+    }
+    public function destroy($id)
+    {
+        $marModele = Modele::findOrFail($id);
+
+        $marModele->delete();
+
+        Flashy::success('Modele supprimé avec succès');
+
+        return redirect()->back();
+    }
+    public function update( $id,ModeleRequest $form)
+    { return 1;
+        $form->persist($id);
+
+        Flashy::success('Modele modifié avec succès');
 
         return redirect()->back();
     }

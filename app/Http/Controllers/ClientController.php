@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\Http\Requests\ClientStoreForm;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request; 
 use MercurySeries\Flashy\Flashy;
 
 class ClientController extends Controller
